@@ -117,15 +117,21 @@
   </div>
 
 
-  <h3>Recording Controls</h3>
+  <h3 style="text-align: center;">Recording Controls</h3>
 
-  <audio id="audio" src="your-audio-file.mp3" preload="auto"></audio>
+   <!-- ▶ Play button -->
+  <button onclick="document.getElementById('audio').play()">▶</button>
+
+  <!-- ⏸ Pause button -->
+  <button onclick="document.getElementById('audio').pause()">⏸</button>
+  
+  <!--<audio id="audio" src="your-audio-file.mp3" preload="auto"></audio>
 
   <button onclick="document.getElementById('audio').play()">Play</button>
   <button onclick="document.getElementById('audio').pause()">Pause</button>
-
+-->
   
-  <h2>Select a File To Upload</h2>
+  <h3>Select a File To Upload</h3>
 
   <input type="file" id="fileInput" multiple>
   <ul id="fileList"></ul>
