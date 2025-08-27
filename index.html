@@ -135,23 +135,22 @@
     });
   </script>
 
-  <h2>Select a File</h2>
-
-  <input type="file" id="fileInput" multiple>
-  <ul id="fileList"></ul>
-
   <script>
-    const fileInput = document.getElementById('fileInput');
-    const fileList = document.getElementById('fileList');
-
-    fileInput.addEventListener('change', () => {
-      fileList.innerHTML = ''; // Clear list
-      for (const file of fileInput.files) {
-        const li = document.createElement('li');
-        li.textContent = `${file.name} (${file.type || 'n/a'}) - ${file.size} bytes`;
-        fileList.appendChild(li);
-      }
-    });
+    fetch('/api/files')
+      .then(response => response.json())
+      .then(files => {
+        const list = document.getElementById('fileList');
+        list.innerHTML = '';
+        files.forEach(file => {
+          const li = document.createElement('li');
+          li.innerHTML = `<a href="/files/${file}" target="_blank">${file}</a>`;
+          list.appendChild(li);
+        });
+      })
+      .catch(error => {
+        document.getElementById('fileList').innerText = 'Error loading files.';
+        console.error('Error fetching file list:', error);
+      });
   </script>
 </body>
 </html>
