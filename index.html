@@ -115,5 +115,25 @@
       </label>
     </div>
   </div>
+
+  <h2>Select a File</h2>
+
+  <input type="file" id="fileInput" multiple>
+  <ul id="fileList"></ul>
+
+  <script>
+    const fileInput = document.getElementById('fileInput');
+    const fileList = document.getElementById('fileList');
+
+    fileInput.addEventListener('change', () => {
+      fileList.innerHTML = ''; // Clear list
+      for (const file of fileInput.files) {
+        const li = document.createElement('li');
+        li.textContent = `${file.name} (${file.type || 'n/a'}) - ${file.size} bytes`;
+        fileList.appendChild(li);
+      }
+    });
+  </script>
+
 </body>
 </html>
